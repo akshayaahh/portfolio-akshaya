@@ -4,18 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akshaya Shetty</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%2280%22 font-size=%2290%22>∞</text></svg>">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    .active {
-      font-weight: bold;
-      border-bottom: 2px solid #2c2d76;
+    html { scroll-behavior: smooth; }
+    .active { font-weight: bold; border-bottom: 2px solid #2c2d76; }
+    .dark-mode { background-color: #000; color: #fff; }
+    .dark-mode .nav-link { color: #fff; }
+    .dark-mode a { color: #93c5fd; }
+    .dark-mode nav {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); background-color: #000; }
+    .dark-mode #toggle-theme {
+  position: fixed;
+  top: 1rem;
+  right: 2.5rem;
+  font-size: 1.875rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+    .dark-mode .resume-btn { background-color: #fff; color: #000; }
+    .dark-mode .contact-btn { background-color: #fff !important; color: #000 !important; }
+    #toggle-theme { position: fixed; top: 1rem; left: 1rem; font-size: 1.875rem; font-weight: bold; cursor: pointer; z-index: 50; transition: all 0.3s ease; }
+    #toggle-theme:hover { filter: drop-shadow(0 0 5px #2c2d76); transform: rotate(5deg); }
+    #darkmode-tip { position: absolute; top: 100%; left: 0; background: black; color: white; font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 0.25rem; white-space: nowrap; display: none; z-index: 100; }
+    #toggle-theme:hover #darkmode-tip { display: block; }
+    .stardust { position: absolute; width: 4px; height: 4px; background: #facc15; border-radius: 50%; pointer-events: none; animation: drift 1.5s ease-out forwards; z-index: 9999; }
+    @keyframes drift {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(40px) scale(0.3); }
+    }
+    .stardust::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #facc15, 0 0 12px #facc15;
+      opacity: 0.6;
     }
   </style>
 </head>
-<body class="bg-white text-[#2c2d76] font-sans text-lg md:text-xl">
-  <!-- Navbar -->
-  <nav class="flex items-center justify-between px-6 py-4 shadow-md fixed w-full bg-white z-50 text-xl">
-    <div class="text-3xl font-bold mr-8">∞</div>
+<body class="bg-white text-[#2c2d76] font-sans text-lg md:text-xl transition-colors duration-300">
+
+  <div id="toggle-theme" class="fixed top-4 left-4 text-3xl font-bold cursor-pointer z-50">∞<span id="darkmode-tip">Magic lives here</span></div>
+
+  <nav class="flex items-center justify-end gap-16 pr-10 py-4 shadow-md fixed w-full bg-white z-40 text-xl">
+    
     <div class="flex space-x-6">
       <a href="#home" class="nav-link hover:text-[#2c2d76] font-medium">Home</a>
       <a href="#projects" class="nav-link hover:text-[#2c2d76] font-medium">Projects</a>
@@ -24,7 +60,6 @@
     </div>
   </nav>
 
-  <!-- Sections -->
   <section id="home" class="pt-28 px-6 min-h-screen">
     <h1 class="text-5xl font-extrabold">Welcome to My World</h1>
     <p class="mt-4">Hi, I’m Akshaya Shetty — I code like a strategist, design like an artist, and animate like I own the frame. Every pixel bends to my will.</p>
@@ -48,7 +83,7 @@
     <p class="mt-4"><strong>Certificates:</strong> Front-End Development (Great Learning), UI/UX Design (Google Coursera)</p>
     <p class="mt-4"><strong>Animation:</strong> Proficient in Blender and web animations</p>
     <p class="mt-6">
-      <a href="Resume.pdf" download class="bg-black text-white py-3 px-6 rounded hover:opacity-90">Download My Resume</a>
+      <a href="Resume.pdf" download class="resume-btn bg-black text-white py-3 px-6 rounded hover:opacity-90">Download My Resume</a>
     </p>
   </section>
 
@@ -59,7 +94,7 @@
       <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded" />
       <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded" />
       <textarea name="message" placeholder="Your Message" required class="w-full p-3 border rounded h-40"></textarea>
-      <button type="submit" class="bg-[#2c2d76] text-black text-lg font-semibold py-3 px-10 rounded-full shadow-lg hover:scale-105 transform transition duration-200">Send Message</button>
+      <button type="submit" class="contact-btn bg-[#2c2d76] text-black text-lg font-semibold py-3 px-10 rounded-full shadow-lg hover:scale-105 transform transition duration-200">Send Message</button>
     </form>
     <div class="mt-8 text-base">
       <p>Email: <a href="mailto:akshaya.shetty040@gmail.com" class="underline">akshaya.shetty040@gmail.com</a></p>
@@ -69,19 +104,58 @@
   </section>
 
   <script>
-    const links = document.querySelectorAll('.nav-link');
-    function updateActiveLink() {
-      const hash = window.location.hash || '#home';
-      links.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === hash) {
-          link.classList.add('active');
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.nav-link');
+      function updateActiveLink() {
+        let scrollPos = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+        links.forEach(link => {
+          const section = document.querySelector(link.getAttribute('href'));
+          if (section) {
+            if (section.offsetTop <= scrollPos + 150 && section.offsetTop + section.offsetHeight > scrollPos + 150) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          }
+        });
+      }
+      window.addEventListener('scroll', updateActiveLink);
+      updateActiveLink();
+
+      function createStardust(x, y) {
+        const dot = document.createElement('div');
+        dot.className = 'stardust';
+        dot.style.left = `${x + (Math.random() * 30 - 15)}px`;
+        dot.style.top = `${y}px`;
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 1500);
+      }
+
+      const toggle = document.getElementById('toggle-theme');
+
+      if (toggle) {
+        setInterval(() => {
+          const rect = toggle.getBoundingClientRect();
+          createStardust(rect.left + rect.width / 2, rect.top + window.scrollY);
+        }, 1000);
+
+        toggle.addEventListener('click', (e) => {
+          document.body.classList.toggle('dark-mode');
+          for (let i = 0; i < 12; i++) {
+            createStardust(e.clientX + (Math.random() * 40 - 20), e.clientY + (Math.random() * 20 - 10));
+          }
+        });
+      }
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight / 2 && toggle) {
+          toggle.classList.add('animate-pulse');
+          setTimeout(() => toggle.classList.remove('animate-pulse'), 3000);
         }
-      });
-    }
-    window.addEventListener('hashchange', updateActiveLink);
-    updateActiveLink();
+      }, { once: true });
+    });
   </script>
 </body>
 </html>
+
 
