@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshaya Shetty</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .active {
+      font-weight: bold;
+      border-bottom: 2px solid #2c2d76;
+    }
+    body {
+      background-color: #ffffff;
+      background-image: url('data:image/svg+xml,%3Csvg width="100%25" height="100%25" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 100 100"%3E%3Cg fill="%232c2d76" fill-opacity="0.05"%3E%3Cpolygon points="50,0 100,100 0,100" /%3E%3C/g%3E%3C/svg%3E');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body class="text-[#2c2d76] font-sans text-lg md:text-xl">
+  <!-- Navbar -->
+  <nav class="flex items-center justify-between px-6 py-4 shadow-md fixed w-full bg-white z-50 text-xl">
+    <div class="text-3xl font-bold mr-8">∞</div>
+    <div class="flex space-x-6">
+      <a href="#home" class="nav-link hover:text-[#2c2d76] font-medium">Home</a>
+      <a href="#projects" class="nav-link hover:text-[#2c2d76] font-medium">Projects</a>
+      <a href="#about" class="nav-link hover:text-[#2c2d76] font-medium">About</a>
+      <a href="#contact" class="nav-link hover:text-[#2c2d76] font-medium">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Sections -->
+  <section id="home" class="pt-28 px-6 min-h-screen">
+    <h1 class="text-5xl font-extrabold">Welcome to My World</h1>
+    <p class="mt-4">Hi, I’m Akshaya Shetty — I code like a strategist, design like an artist, and animate like I own the frame. Every pixel bends to my will.</p>
+  </section>
+
+  <section id="projects" class="pt-28 px-6 min-h-screen">
+    <h2 class="text-4xl font-bold mb-6">Projects</h2>
+    <ul class="list-disc pl-6 space-y-4">
+      <li><strong><a href="#" class="underline">Sellify</a></strong>: Inventory & profit tracking app using Firebase & GitHub auth.</li>
+      <li><strong><a href="#" class="underline">Genome-X</a></strong>: Genetic health risk analysis + lifestyle/diet recommendation engine.</li>
+      <li><strong><a href="#" class="underline">Celeste</a></strong>: Matchmaking app with quizzes, astrology, and social events.</li>
+      <li><strong><a href="#" class="underline">Freshcart</a></strong>: Clean e-commerce UI design for intuitive grocery shopping.</li>
+    </ul>
+  </section>
+
+  <section id="about" class="pt-28 px-6 min-h-screen">
+    <h2 class="text-4xl font-bold mb-6">About Me</h2>
+    <p>I’m Akshaya Shetty — a passionate and dynamic developer with an eye for design and detail. I bring a fusion of creativity and code into every project, turning concepts into compelling digital stories.</p>
+    <p class="mt-6"><strong>Education:</strong> Bachelors in Computer Applications, PES University (2023–2026)</p>
+    <p class="mt-4"><strong>Skills:</strong> React, Tailwind, Firebase, Python, GitHub, Figma, Blender</p>
+    <p class="mt-4"><strong>Certificates:</strong> Front-End Development (Great Learning), UI/UX Design (Google Coursera)</p>
+    <p class="mt-4"><strong>Animation:</strong> Proficient in Blender and web animations</p>
+    <p class="mt-6">
+      <a href="Akshaya_Shetty_Resume.pdf" download class="bg-[#2c2d76] text-white py-3 px-6 rounded hover:opacity-90">Download My Resume</a>
+    </p>
+  </section>
+
+  <section id="contact" class="pt-28 px-6 min-h-screen text-center">
+    <h2 class="text-4xl font-bold mb-4">Let’s Make Magic Happen</h2>
+    <p class="italic mb-6">Whether it’s coffee, curiosity, or collaboration — let’s make magic happen.</p>
+    <form action="https://formspree.io/f/meokknjv" method="POST" class="space-y-4 max-w-md mx-auto">
+      <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded" />
+      <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded" />
+      <textarea name="message" placeholder="Your Message" required class="w-full p-3 border rounded h-40"></textarea>
+      <button type="submit" class="bg-[#2c2d76] text-black text-lg font-semibold py-3 px-10 rounded-full shadow-lg hover:scale-105 transform transition duration-200">Send Message</button>
+    </form>
+    <div class="mt-8 text-base">
+      <p>Email: <a href="mailto:akshaya.shetty040@gmail.com" class="underline">akshaya.shetty040@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/akshayaahh" target="_blank" class="underline">akshayaahh</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/akshaya-shetty-7184b2286/" target="_blank" class="underline">akshaya-shetty</a></p>
+    </div>
+  </section>
+
+  <script>
+    const links = document.querySelectorAll('.nav-link');
+    function updateActiveLink() {
+      const hash = window.location.hash || '#home';
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === hash) {
+          link.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('hashchange', updateActiveLink);
+    updateActiveLink();
+  </script>
+</body>
+</html>
