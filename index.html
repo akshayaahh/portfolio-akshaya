@@ -44,7 +44,14 @@
       box-shadow: 0 0 6px #facc15, 0 0 12px #facc15;
       opacity: 0.6;
     }
-  </style>
+    @keyframes fade-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-fade-in {
+    animation: fade-in 1.2s ease forwards;
+  }
+</style>
 </head>
 <body class="bg-white text-[#2c2d76] font-sans text-lg md:text-xl transition-colors duration-300">
 
@@ -60,9 +67,12 @@
     </div>
   </nav>
 
-  <section id="home" class="pt-28 px-6 min-h-screen">
-    <h1 class="text-5xl font-extrabold">Welcome to My World</h1>
-    <p class="mt-4">Hi, I’m Akshaya Shetty — I code like a strategist, design like an artist, and animate like I own the frame. Every pixel bends to my will.</p>
+  <section id="home" class="pt-28 px-6 min-h-screen flex flex-col md:flex-row items-center justify-between gap-16">
+  <img src="WhatsApp%20Image%202025-06-16%20at%2011.57.49%20PM.jpeg" alt="Akshaya Shetty" class="w-64 h-64 object-cover rounded-full shadow-2xl transform transition duration-1000 ease-in-out hover:scale-105 animate-fade-in" />
+    <div class="flex-1">
+  <h1 class="text-5xl font-extrabold">Welcome to My World</h1>
+  <p class="mt-4">Hi, I’m Akshaya Shetty — I code like a strategist, design like an artist, and animate like I own the frame. Every pixel bends to my will.</p>
+</div>
   </section>
 
   <section id="projects" class="pt-28 px-6 min-h-screen">
@@ -141,6 +151,26 @@
 
         toggle.addEventListener('click', (e) => {
           document.body.classList.toggle('dark-mode');
+          const popup = document.createElement('div');
+          popup.textContent = "Dark mode suits me, doesn't it? 😏";
+          popup.style.position = 'fixed';
+          popup.style.bottom = '2rem';
+          popup.style.left = '50%';
+          popup.style.transform = 'translateX(-50%)';
+          popup.style.background = '#2c2d76';
+          popup.style.color = 'white';
+          popup.style.padding = '0.75rem 1.5rem';
+          popup.style.borderRadius = '999px';
+          popup.style.boxShadow = '0 0 12px rgba(255,255,255,0.3)';
+          popup.style.zIndex = '9999';
+          popup.style.opacity = '0';
+          popup.style.transition = 'opacity 0.4s ease';
+          document.body.appendChild(popup);
+          setTimeout(() => { popup.style.opacity = '1'; }, 50);
+          setTimeout(() => {
+            popup.style.opacity = '0';
+            setTimeout(() => popup.remove(), 1000);
+          }, 2500);
           for (let i = 0; i < 12; i++) {
             createStardust(e.clientX + (Math.random() * 40 - 20), e.clientY + (Math.random() * 20 - 10));
           }
@@ -149,7 +179,7 @@
 
       window.addEventListener('scroll', () => {
         if (window.scrollY > window.innerHeight / 2 && toggle) {
-          toggle.classList.add('animate-pulse');
+          // toggle.classList.add('animate-pulse');
           setTimeout(() => toggle.classList.remove('animate-pulse'), 3000);
         }
       }, { once: true });
@@ -157,5 +187,6 @@
   </script>
 </body>
 </html>
+
 
 
