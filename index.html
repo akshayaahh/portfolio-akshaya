@@ -171,6 +171,20 @@
     stroke-dasharray: 600;
     stroke-dashoffset: 0;
   }
+    .name-hint {
+  margin-top: 20px;
+  background-color: #000;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.name-hint.show {
+  opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -235,6 +249,9 @@
     <div style="margin-top: 20px; display: flex; gap: 20px; justify-content: center;">
   <a href="#projects" style="text-decoration: none; color: white; background: #000; padding: 12px 32px; border-radius: 6px; font-weight: 600; font-size: 16px;">View My Work</a>
   <a href="Resume.pdf" style="text-decoration: none; color: white; background: #555; padding: 12px 32px; border-radius: 6px; font-weight: 600; font-size: 16px;">Download Resume</a>
+</div>
+    <div style="margin-top: 20px; text-align: center;">
+  <div id="nameHint" class="name-hint">Click my name?</div>
 </div>
   </section>
 
@@ -346,6 +363,34 @@ window.addEventListener('load', () => {
       }, 800);
     });
   </script>
+  <script>
+  let hint = document.getElementById('nameHint');
+  let cycles = 0;
+  const maxCycles = 6;
+
+  function showHint() {
+    hint.classList.add('show');
+    setTimeout(() => {
+      hint.classList.remove('show');
+      cycles++;
+      if (cycles < maxCycles) {
+        setTimeout(showHint, 5000); // show again after 5s
+      }
+    }, 10000); // visible for 10s
+  }
+
+  window.onload = () => {
+    setTimeout(showHint, 1000); // initial delay
+  };
+
+  const nameButton = document.querySelector('a[href="another-page.html"]');
+  if (nameButton) {
+    nameButton.addEventListener('click', () => {
+      cycles = maxCycles; // stop future pop-ups
+      hint.remove(); // optional: hide immediately
+    });
+  }
+</script>
 </body>
 </html>
 
