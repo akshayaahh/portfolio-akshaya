@@ -365,8 +365,23 @@ window.addEventListener('load', () => {
     function toggleMenu() {
       document.getElementById('nav').classList.toggle('active');
     }
-  
-</script>
+  <section id="contact" class="pt-28 px-6 min-h-screen text-center">
+    <h2 class="text-4xl font-bold mb-4">Let’s Make Magic Happen</h2>
+    <p class="italic mb-6">Whether it’s coffee, curiosity, or collaboration — let’s make magic happen.</p>
+    <form action="https://formspree.io/f/meokknjv" method="POST" class="space-y-4 max-w-md mx-auto">
+      <input type="text" name="name" placeholder="Name" required class="w-full p-3 border rounded" />
+      <input type="email" name="email" placeholder="Email" required class="w-full p-3 border rounded" />
+      <textarea name="message" placeholder="Your Message" required class="w-full p-3 border rounded h-40"></textarea>
+      <button type="submit" class="contact-btn bg-[#2c2d76] text-black text-lg font-semibold py-3 px-10 rounded-full shadow-lg hover:scale-105 transform transition duration-200">Send Message</button>
+    </form>
+    <div class="mt-8 text-base">
+      <p>Email: <a href="mailto:akshaya.shetty040@gmail.com" class="underline">akshaya.shetty040@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/akshayaahh" target="_blank" class="underline">akshayaahh</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/akshaya-shetty-7184b2286/" target="_blank" class="underline">akshaya-shetty</a></p>
+    </div>
+  </section>
+
+  </script>
   <footer style="text-align: center; padding: 30px 20px; background: #f0f0f0; font-size: 14px; color: #777;">
     &copy; 2025 Akshaya Shetty. All rights reserved.
   </footer>
